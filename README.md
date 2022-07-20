@@ -1,1 +1,1 @@
-# -continuos-integration-workshop
+# continuos-integration-workshop
