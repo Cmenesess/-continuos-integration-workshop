@@ -1,1 +1,1 @@
-# continuos-integration-workshop
+# CONTINUOUS INTEGRATION WORKSHOP 
