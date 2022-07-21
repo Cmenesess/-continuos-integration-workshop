@@ -13,16 +13,6 @@ public class RelationalOperatorTest {
 	private final PrintStream standardOut = System.out;
 	private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
-	@BeforeEach
-	public void setUp() {
-		System.setOut(new PrintStream(outputStreamCaptor));
-	}
-
-	@AfterEach
-	public void tearDown() {
-		System.setOut(standardOut);
-	}
-
 	@Test
 	public void isGreaterTest1() {
 		RelationalOperator tester = new RelationalOperator();
