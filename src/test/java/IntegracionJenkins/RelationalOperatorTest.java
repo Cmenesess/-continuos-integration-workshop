@@ -10,20 +10,32 @@ import org.junit.Test;
 
 public class RelationalOperatorTest {
 
+	/*
 	private final PrintStream standardOut = System.out;
 	private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+	 * @BeforeEach
+	 * public void setUp() {
+	 * System.setOut(new PrintStream(outputStreamCaptor));
+	 * }
+	 * 
+	 * @AfterEach
+	 * public void tearDown() {
+	 * System.setOut(standardOut);
+	 * }
+	 */
 
-	/* 
-	@BeforeEach
-	public void setUp() {
-		System.setOut(new PrintStream(outputStreamCaptor));
+	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+	private final PrintStream originalOut = System.out;
+
+	@Before
+	public void setUpStreams() {
+		System.setOut(new PrintStream(outContent));
 	}
 
-	@AfterEach
-	public void tearDown() {
-		System.setOut(standardOut);
+	@After
+	public void restoreStreams() {
+		System.setOut(originalOut);
 	}
-	*/
 
 	@Test
 	public void isGreaterTest1() {
@@ -59,20 +71,20 @@ public class RelationalOperatorTest {
 	public void goodWidthTest1() {
 		RelationalOperator tester = new RelationalOperator();
 		tester.goodWidth(4, 2, 7);
-		assertEquals("The width is correct", outputStreamCaptor.toString().trim());
+		assertEquals("The width is correct", outContent.toString().trim());
 	}
 
 	@Test
 	public void goodWidthTest2() {
 		RelationalOperator tester = new RelationalOperator();
 		tester.goodWidth(4, 2, 3);
-		assertEquals("The width is INCORRECT", outputStreamCaptor.toString().trim());
+		assertEquals("The width is INCORRECT", outContent.toString().trim());
 	}
 
 	@Test
 	public void goodWidthTest3() {
 		RelationalOperator tester = new RelationalOperator();
 		tester.goodWidth(4, 5, 7);
-		assertEquals("The width is INCORRECT", outputStreamCaptor.toString().trim());
+		assertEquals("The width is INCORRECT", outContent.toString().trim());
 	}
 }
