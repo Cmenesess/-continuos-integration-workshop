@@ -24,18 +24,8 @@ public class RelationalOperatorTest {
 	 * }
 	 */
 
-	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-	private final PrintStream originalOut = System.out;
-
-	@Before
-	public void setUpStreams() {
-		System.setOut(new PrintStream(outContent));
-	}
-
-	@After
-	public void restoreStreams() {
-		System.setOut(originalOut);
-	}
+	private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+	private PrintStream originalOut = System.out;
 
 	@Test
 	public void isGreaterTest1() {
@@ -69,22 +59,28 @@ public class RelationalOperatorTest {
 
 	@Test
 	public void goodWidthTest1() {
+		System.setOut(new PrintStream(outContent));
 		RelationalOperator tester = new RelationalOperator();
 		tester.goodWidth(4, 2, 7);
 		assertEquals("The width is correct", outContent.toString().trim());
+		System.setOut(originalOut);
 	}
 
 	@Test
 	public void goodWidthTest2() {
+		System.setOut(new PrintStream(outContent));
 		RelationalOperator tester = new RelationalOperator();
 		tester.goodWidth(4, 2, 3);
 		assertEquals("The width is INCORRECT", outContent.toString().trim());
+		System.setOut(originalOut);
 	}
 
 	@Test
 	public void goodWidthTest3() {
+		System.setOut(new PrintStream(outContent));
 		RelationalOperator tester = new RelationalOperator();
 		tester.goodWidth(4, 5, 7);
 		assertEquals("The width is INCORRECT", outContent.toString().trim());
+		System.setOut(originalOut);
 	}
 }
